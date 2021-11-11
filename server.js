@@ -66,6 +66,23 @@ app.post("/bookmark", async (req, res) => {
     }
 });  
 
+// Delete Route
+app.delete("/bookmark/:id", async (req, res) => {
+    // get the id from params
+    const id = req.params.id;
+    // delete the bookmark
+    Bookmark.findByIdAndRemove(id)
+      .then(() => {
+        // redirect to main page after deleting
+        res.redirect("/bookmark");
+      })
+      // send error as json
+      .catch((error) => {
+        res.status(400).json(error)
+        res.json({ error });
+      });
+  });
+
 ////////////////////
 // Listener
 ////////////////////
