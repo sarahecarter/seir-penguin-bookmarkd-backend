@@ -71,17 +71,22 @@ app.delete("/bookmark/:id", async (req, res) => {
     // get the id from params
     const id = req.params.id;
     // delete the bookmark
-    Bookmark.findByIdAndRemove(id)
-      .then(() => {
-        // redirect to main page after deleting
-        res.redirect("/bookmark");
-      })
-      // send error as json
-      .catch((error) => {
-        res.status(400).json(error)
-        res.json({ error });
-      });
-  });
+    try {res.json(await Bookmark.findByIdAndRemove(id));
+    } catch (error) {
+        res.status(400).json(error);
+    }
+});
+
+// Update Route
+app.put("/bookmark/:id", async (req, res) => {
+    // get the id from params
+    const id = req.params.id;
+    // update the bookmark
+    try {res.json(await Bookmark.findByIdAndUpdate(id, req.body, {new: true}))
+    } catch (error) {
+        res.status(400).json(error);
+    }
+});
 
 ////////////////////
 // Listener
