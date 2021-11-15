@@ -29,7 +29,8 @@ mongoose.connection
 ////////////////////
 const BookmarkSchema = new mongoose.Schema({
     title: String,
-    url: String
+    url: String,
+    description: String 
 })
 
 const Bookmark = mongoose.model("Bookmark", BookmarkSchema)
