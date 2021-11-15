@@ -9,8 +9,10 @@
 - dotenv
 
 ## MODELS
+Bookmark:
 - title: string
 - url: string
+- description: string
 
 ## BACKEND ROUTE TABLE
 | url | method | action |
